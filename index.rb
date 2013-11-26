@@ -7,26 +7,14 @@ ForecastIO.configure do |configuration|
 	configuration.api_key = 'cd3c3e767f7c3b35ce602781e96f3289'
 end
 
-ForecastIO.configure do |configuration|
-  configuration.default_params = {units: 'si'}
-end
-
-
 get'/' do
 
+	forecast = ForecastIO.forecast(37.8267,-0.083333)
 
-
-forecast = ForecastIO.forecast(41.844,-73.5942)
-@forecast1 = forecast.currently.summary
-
-
-@sunset =  forecast.daily.sunsetTime
-@sunrise = forecast.daily.sunriseTime
-@time1 =    Time.at(forecast.currently.time)
-@time = @time1.to_datetime
-
-	
-
+	@sunset  =  forecast.daily.sunsetTime
+	@sunrise =  forecast.daily.sunriseTime
+	@timeu   =  Time.at(forecast.currently.time)
+	@time    =  @timeu.to_time
 	
 erb :home
 
