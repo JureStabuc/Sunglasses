@@ -1,13 +1,21 @@
 require 'rubygems'
 require 'sinatra'
 require 'forecast_io'
+require 'geocoder'
 
+Geocoder.configure(:timeout => 60)
 
 ForecastIO.configure do |configuration|
 	configuration.api_key = 'cd3c3e767f7c3b35ce602781e96f3289'
 end
 
 get'/' do
+
+	result = request.location
+	lat = result.latitude
+	long = result.longitude
+
+	forecast = ForecastIO.forecast(lat, long)
 
 	forecast = ForecastIO.forecast(37.8267,-0.083333)
 	clouds = forecast.currently.cloudCover
