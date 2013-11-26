@@ -16,8 +16,6 @@ get'/' do
 	long = result.longitude
 
 	forecast = ForecastIO.forecast(lat, long)
-
-	forecast = ForecastIO.forecast(37.8267,-0.083333)
 	clouds = forecast.currently.cloudCover
 
 	sunset  =  Time.at(forecast.daily.data[0].sunsetTime).to_time
