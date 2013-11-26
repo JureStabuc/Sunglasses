@@ -13,8 +13,8 @@ get'/' do
 
 	@sunset  =  forecast.daily.sunsetTime
 	@sunrise =  forecast.daily.sunriseTime
-	@timeu   =  Time.at(forecast.currently.time)
-	@time    =  @timeu.to_time
+	timeu    =  Time.at(forecast.currently.time)
+	@time    =  timeu.to_time
 	
 erb :home
 
